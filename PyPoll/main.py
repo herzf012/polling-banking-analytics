@@ -53,7 +53,7 @@ for id in ballot_id_list:
 
 # Calculate percentage of votes each candidate won
 
-candidate_percentage_votes_dict = candidate_total_votes_dict
+candidate_percentage_votes_dict = candidate_total_votes_dict.copy()
 
 for i in candidate_list_unique:
     candidate_percentage_votes_dict[i] = candidate_total_votes_dict[i] / total_votes
@@ -68,11 +68,26 @@ for i in candidate_list_unique:
         winner = i
         max_votes = candidate_total_votes_dict[i]
 
-print(winner)
+# ----------Output----------
 
+# Put results in a list
 
+results_list = ["Election Results", "------------------------", f"Total Votes: {total_votes}", "------------------------", 
+f"{candidate_list_unique[0]}: {round(100 * candidate_percentage_votes_dict[candidate_list_unique[0]], 3)}% ({candidate_total_votes_dict[candidate_list_unique[0]]})", 
+f"{candidate_list_unique[1]}: {round(100 * candidate_percentage_votes_dict[candidate_list_unique[1]], 3)}% ({candidate_total_votes_dict[candidate_list_unique[1]]})", 
+f"{candidate_list_unique[2]}: {round(100 * candidate_percentage_votes_dict[candidate_list_unique[2]], 3)}% ({candidate_total_votes_dict[candidate_list_unique[2]]})", 
+"------------------------", f"Winner: {winner}", "------------------------"]
 
+# Print results to terminal
 
+for line in results_list:
+    print(line)
 
+# Export results as a text file to analysis
 
+results_file = os.path.join("analysis", "results.txt")
 
+with open(results_file, "w") as txtfile:
+    for line in results_list:
+        txtfile.write(line)
+        txtfile.write("\n")
