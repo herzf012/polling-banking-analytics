@@ -9,17 +9,23 @@ import csv
 
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
+header_bool = True
+budget_header = []
 budget_dict = {}
 month_list = []
 profit_losses_list = []
 
 with open(budget_csv, encoding = "utf-8") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
-    next(csvreader)
     for row in csvreader:
-        month_list.append(row[0])
-        profit_losses_list.append(int(row[1]))
-        budget_dict[row[0]] = row[1]
+        if header_bool == True:
+            budget_header.append(row[0])
+            budget_header.append(row[1])
+            header_bool = False
+        else:
+            month_list.append(row[0])
+            profit_losses_list.append(int(row[1]))
+            budget_dict[row[0]] = row[1]
 
 # ----------Analysis----------
 
