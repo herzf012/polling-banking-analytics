@@ -1,9 +1,10 @@
 # Import relavent modules
 
+from operator import indexOf
 import os
 import csv
 
-# Set csv path and pull data to work with.
+# Set csv path and pull data to work with
 
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
@@ -20,8 +21,42 @@ with open(budget_csv, encoding = "utf-8") as csvfile:
         profit_losses_list.append(int(row[1]))
         budget_dict[row[0]] = row[1]
 
-print(profit_losses_list)
 
-# Analysis
-# Do analysis
+# ----------Analysis----------
+
+# Total months looked at
+
+total_months = len(month_list)
+
+# Net total amount of "Profit/Losses"
+
+total_net_amount = 0
+
+for i in profit_losses_list:
+    total_net_amount += i
+
+# Changes in "Profit/Losses"
+
+delta_profits_losses_list = []
+average_delta = 0
+sum_of_deltas = 0
+
+count = 1
+while count < len(profit_losses_list):
+    delta = profit_losses_list[count] - profit_losses_list[count - 1]
+    delta_profits_losses_list.append(delta)
+    count += 1
+
+
+for i in delta_profits_losses_list:
+    sum_of_deltas += i
+
+average_delta = sum_of_deltas / len(delta_profits_losses_list)
+
+# Greatest increase and decrease in profits
+# Work in-progress
+
+max_increase_index = delta_profits_losses_list.index(max(delta_profits_losses_list))
+
+print(f"Index: {max_increase_index} Profit: {profit_losses_list[max_increase_index]}")
 
