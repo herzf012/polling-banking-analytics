@@ -23,5 +23,40 @@ with open(election_csv, encoding = "utf-8") as csvfile:
         candidate_list.append(row[2])
         ballot_id_dict[row[0]] = [row[1], row[2]]
 
+# ----------Analysis----------
+
+# Calculate total number of votes
+
+total_votes = len(ballot_id_list)
+
+# Create list of unique candidates
+
+candidate_list_unique = []
+
+old_candidate = ""
+for new_candidate in candidate_list:
+    if (new_candidate != old_candidate) & (new_candidate not in candidate_list_unique):
+        candidate_list_unique.append(new_candidate)
+        old_candidate = new_candidate
+
+# Calculate amount of votes each candidate won
+
+candidate_total_votes_dict = {}
+
+for i in candidate_list_unique:
+    candidate_total_votes_dict[i] = 0
+
+voted_for = ""
+for id in ballot_id_list:
+    voted_for = ballot_id_dict[id][1]
+    candidate_total_votes_dict[voted_for] += 1
+
+print(candidate_total_votes_dict)
+
+# Calculate percentage of votes each candidate won
+# Do
+
+
+
 
 
