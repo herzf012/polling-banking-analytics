@@ -51,10 +51,26 @@ for id in ballot_id_list:
     voted_for = ballot_id_dict[id][1]
     candidate_total_votes_dict[voted_for] += 1
 
-print(candidate_total_votes_dict)
-
 # Calculate percentage of votes each candidate won
-# Do
+
+candidate_percentage_votes_dict = candidate_total_votes_dict
+
+for i in candidate_list_unique:
+    candidate_percentage_votes_dict[i] = candidate_total_votes_dict[i] / total_votes
+
+# Determine winner of election
+
+winner = ""
+max_votes = 0
+
+for i in candidate_list_unique:
+    if candidate_total_votes_dict[i] > max_votes:
+        winner = i
+        max_votes = candidate_total_votes_dict[i]
+
+print(winner)
+
+
 
 
 
