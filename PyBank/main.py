@@ -1,6 +1,5 @@
 # Import relavent modules
 
-from operator import indexOf
 import os
 import csv
 
@@ -56,7 +55,16 @@ average_delta = sum_of_deltas / len(delta_profits_losses_list)
 # Greatest increase and decrease in profits
 # Work in-progress
 
-max_increase_index = delta_profits_losses_list.index(max(delta_profits_losses_list))
+max_delta = max(delta_profits_losses_list)
+max_delta_index = delta_profits_losses_list.index(max_delta)
+max_delta_date = month_list[max_delta_index + 1]
 
-print(f"Index: {max_increase_index} Profit: {profit_losses_list[max_increase_index]}")
+min_delta = min(delta_profits_losses_list)
+min_delta_index = delta_profits_losses_list.index(min_delta)
+min_delta_date = month_list[min_delta_index + 1]
+
+print(f"Greatest Increase in Profits: {max_delta_date} (${max_delta})")
+print(f"Greatest Decrease in Profits: {min_delta_date} (${min_delta})")
+
+
 
