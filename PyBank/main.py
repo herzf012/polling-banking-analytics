@@ -76,9 +76,9 @@ f"Greatest Decrease in Profits: {min_delta_date} (${min_delta})"]
 for i in results_list:
     print(i)
 
-# Export results as a text file
+# Export results as a text file to analysis
 
-results_file = os.path.join("Resources", "results.txt")
+results_file = os.path.join("analysis", "results.txt")
 
 with open(results_file, "w") as txtfile:
     for i in results_list:
